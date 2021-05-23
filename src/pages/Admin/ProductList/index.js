@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
 import ProductList from './ProductList';
 
-const mapStateToProps = ({ products, manufacturers, productTypes }) => ({
-  loading: products.loading || manufacturers.loading || productTypes.loading,
-  products: products.data,
-  manufacturers: manufacturers.data,
-  productTypes: productTypes.data,
-  error: products.error || manufacturers.error || productTypes.error,
+const mapStateToProps = ({ products }) => ({
+  loading: false,
+  products,
+  error: '',
 });
 
 const mapDispatchToProps = dispatch => ({

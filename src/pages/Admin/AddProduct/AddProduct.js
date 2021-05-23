@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { fields, initialValues } from './fields';
 
 const AddProduct = ({ history, match, products, manufacturers, productTypes, manageProduct }) => {
+  console.log('error');
   const [updatedFields, setUpdatedFields] = useState(fields);
   const [defaultValue, setDefaultValue] = useState(initialValues);
 

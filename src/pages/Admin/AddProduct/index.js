@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import AddProduct from './AddProduct';
 
 const mapStateToProps = ({ products, manufacturers, productTypes }) => ({
-  products: products.data,
-  manufacturers: manufacturers.data,
-  productTypes: productTypes.data,
+  products,
+  manufacturers,
+  productTypes,
 });
 
 const mapDispatchToProps = dispatch => ({

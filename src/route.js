@@ -1,14 +1,17 @@
-import Admin from 'pages/Admin';
-import AddProduct from 'pages/Admin/AddProduct';
-import ProductList from 'pages/Admin/ProductList';
-import Home from 'pages/Home';
-import Login from 'pages/Login';
+import { lazy } from 'react';
+
+const Admin = lazy(() => import('pages/Admin'));
+const AddProduct = lazy(() => import('pages/Admin/AddProduct'));
+const ProductList = lazy(() => import('pages/Admin/ProductList'));
+const Cart = lazy(() => import('pages/Cart'));
+const Home = lazy(() => import('pages/Home'));
+const Products = lazy(() => import('pages/Products'));
+const Login = lazy(() => import('pages/Login'));
 
 export default [
   {
     path: '/',
     exact: true,
-    label: 'Home',
     component: Home,
   },
   {
@@ -17,7 +20,6 @@ export default [
   },
   {
     path: '/admin',
-    exact: true,
     component: Admin,
     routes: [
       {
@@ -26,21 +28,21 @@ export default [
         component: ProductList,
       },
       {
-        path: '/admin/addproduct',
+        path: '/admin/addProduct',
         component: AddProduct,
       },
       {
-        path: '/admin/updateproduct/:id',
+        path: '/admin/updateProduct/:id',
         component: AddProduct,
       },
     ],
   },
   {
-    path: '/addProduct',
-    component: AddProduct,
+    path: '/products',
+    component: Products,
   },
   {
-    path: '/updateProduct/:id',
-    component: AddProduct,
+    path: '/cart',
+    component: Cart,
   },
 ];

@@ -14,13 +14,14 @@
 // Convet Todo application using Hooks
 // Testing Components
 
-import Navigation from 'components/Navigation';
-import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import RouteWithSubRoutes from 'components/Navigation';
+import React, { Suspense } from 'react';
+import { Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AuthProvider } from './context/authContext';
 import routes from './route';
 import store from './configureStore';
+import customHistory from './history';
 
 // const Header = () => {
 //   const [auth] = useContext(AuthContext);
@@ -48,12 +49,14 @@ import store from './configureStore';
 const App = () => (
   <Provider store={store}>
     <AuthProvider>
-      <Router>
-        <Switch>
-          {routes.map((route, i) => (
-            <Navigation key={i} {...route} />
-          ))}
-        </Switch>
+      <Router history={customHistory}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            {routes.map((route, i) => (
+              <RouteWithSubRoutes key={i} {...route} />
+            ))}
+          </Switch>
+        </Suspense>
       </Router>
     </AuthProvider>
   </Provider>

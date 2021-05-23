@@ -1,16 +1,13 @@
-import Navigation from 'components/Navigation';
+import RouteWithSubRoutes from 'components/Navigation';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import AddProduct from './AddProduct';
-import ProductList from './ProductList';
+import { Switch } from 'react-router-dom';
 
-const Admin = ({ routes, history }) => (
-  <>
-    <Switch>
-      <Route path="/admin" component={ProductList} />
-      <Route path="/admin/addProduct" component={AddProduct} />
-    </Switch>
-  </>
+const Admin = ({ routes }) => (
+  <Switch>
+    {routes.map((route, i) => (
+      <RouteWithSubRoutes key={i} {...route} />
+    ))}
+  </Switch>
 );
 
 export default Admin;

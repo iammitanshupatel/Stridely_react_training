@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   TableHead,
   Table,
@@ -21,26 +21,13 @@ const ProductList = ({
   loading,
   error,
   products,
-  productTypes,
-  manufacturers,
   loadProducts,
   updateProduct,
   deleteProduct,
 }) => {
-    
   useEffect(() => {
     loadProducts();
   }, [loadProducts]);
-
-  const getProductType = useCallback(
-    id => productTypes.find(x => x.id === id)?.type || '',
-    [productTypes],
-  );
-
-  const getManufacturers = useCallback(
-    id => manufacturers.find(x => x.id === id)?.manifacturer || '',
-    [manufacturers],
-  );
 
   if (error) {
     return <h1>{error.message}</h1>;
@@ -52,7 +39,11 @@ const ProductList = ({
       {loading && <h1>Loading...</h1>}
       {!loading && (
         <>
-          <Button variant="contained" color="primary" onClick={() => history.push('/addProduct')}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.push('/admin/addProduct')}
+          >
             Add Product
           </Button>
           <TableContainer>
@@ -71,8 +62,8 @@ const ProductList = ({
                 {products.map(product => (
                   <TableRow key={product.id}>
                     <TableCell>{product.name}</TableCell>
-                    <TableCell>{getManufacturers(product.manifacturerId)}</TableCell>
-                    <TableCell>{getProductType(product.typeId)}</TableCell>
+                    <TableCell>{product.ManufacturerName}</TableCell>
+                    <TableCell>{product.productTypeName}</TableCell>
                     <TableCell>{product.price}</TableCell>
                     <TableCell>
                       <div>
@@ -101,7 +92,7 @@ const ProductList = ({
                       </IconButton>
                       <IconButton
                         aria-label="edit"
-                        onClick={() => history.push(`/updateProduct/${product.id}`)}
+                        onClick={() => history.push(`/admin/updateProduct/${product.id}`)}
                       >
                         <EditIcon />
                       </IconButton>
@@ -124,11 +115,7 @@ ProductList.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(Error),
   products: PropTypes.array.isRequired,
-  productTypes: PropTypes.array.isRequired,
-  manufacturers: PropTypes.array.isRequired,
   loadProducts: PropTypes.func.isRequired,
-  loadManufacturer: PropTypes.func.isRequired,
-  loadProductTypes: PropTypes.func.isRequired,
   updateProduct: PropTypes.func.isRequired,
   deleteProduct: PropTypes.func.isRequired,
 };

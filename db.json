@@ -21,7 +21,7 @@
       "typeId": 1,
       "price": "60000",
       "currency": "INR",
-      "quantities": 1
+      "quantities": 2
     },
     {
       "name": "note 10",
@@ -31,6 +31,15 @@
       "currency": "INR",
       "quantities": 8,
       "id": 2
+    },
+    {
+      "name": "note 10",
+      "manifacturerId": 2,
+      "typeId": 1,
+      "price": 10000,
+      "currency": "INR",
+      "quantities": 3,
+      "id": 3
     }
   ],
   "productTypes": [
@@ -59,6 +68,20 @@
     {
       "id": 3,
       "manifacturer": "Xiomi"
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "name": "IPhone 11",
+      "manifacturerId": 1,
+      "typeId": 1,
+      "price": "60000",
+      "currency": "INR",
+      "quantities": 2,
+      "productTypeName": "Mobile",
+      "ManufacturerName": "Apple",
+      "quantity": 2
     }
   ]
 }
